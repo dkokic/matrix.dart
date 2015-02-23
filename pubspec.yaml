@@ -1,0 +1,7 @@
+name: matrix
+version: 0.0.1
+author: Draško Kokić <drasko.kokic@googlemail.com>
+description: A library for Dart developers to provide decentralised communication using the Matrix spec.
+homepage: http://dkokic.github.io/matrix.dart
+dev_dependencies:
+  unittest: any
