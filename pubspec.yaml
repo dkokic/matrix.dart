@@ -3,5 +3,18 @@ version: 0.0.1
 author: Draško Kokić <drasko.kokic@googlemail.com>
 description: A library for Dart developers to provide decentralised communication using the Matrix spec.
 homepage: http://dkokic.github.io/matrix.dart
+
+dependencies:
+  polymer: 0.16.3+1
+  core_elements: 0.7.1+2
+  paper_elements: 0.7.1
+  route_hierarchical: 0.6.1+1
 dev_dependencies:
   unittest: any
+
+transformers:
+- polymer:
+    entry_points: web/index.html
+
+environment:
+  sdk: ">=1.10.0 <2.0.0"
