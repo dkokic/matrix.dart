@@ -19,6 +19,7 @@ export 'package:core_elements/core_scaffold.dart';
 export 'package:core_elements/core_toolbar.dart';
 export 'package:core_elements/roboto.dart';
 export 'package:paper_elements/paper_item.dart';
+export 'package:matrix/src/webclient/app_login.dart';
 
 @CustomTag('polymer-app')
 class PolymerApp extends PolymerElement {
@@ -43,8 +44,12 @@ class PolymerApp extends PolymerElement {
 
   PolymerApp.created() : super.created();
 
+  String get selectedPath => 'login';
+  void set selectedPath(String value) => print('trying to change selectedPath to $value');
+
   domReady() {
     // Set up the routes for all the pages.
+    router.root.addRoute(name: 'Matrix', path: 'matrix', defaultRoute: false, enter: enterRoute);
     for (var page in pages) {
       router.root.addRoute(
           name: page.name, path: page.path,

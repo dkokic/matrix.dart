@@ -1,0 +1,102 @@
+<polymer-element name="app-login">
+    <template>
+        <style>
+            label {
+              font-weight: bold;
+            }
+            #wrapper {
+              margin: auto;
+              max-width: 1280px;
+              padding-top: 40px;
+              padding-bottom: 40px;
+              padding-left: 20px;
+              padding-right: 20px;
+            }
+            .loginWrapper {
+              text-align: center;
+            }
+            #loginForm {
+              text-align: left;
+              padding: 1em;
+              margin-bottom: 40px;
+              display: inline-block;
+              -webkit-border-radius: 10px;
+              -moz-border-radius: 10px;
+              border-radius: 10px;
+              -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);
+              -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);
+              box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.15);
+              background-color: #f8f8f8;
+              border: 1px #ccc solid;
+            }
+            #loginForm, #loginForm input, #loginForm button, #loginForm select {
+              font-size: 18px;
+            }
+            #serverConfig {
+              text-align: center;
+            }
+            #serverConfig, #serverConfig input, #serverConfig button {
+              font-size: 10pt ! important;
+            }
+            #serverConfig label {
+              display: inline-block;
+              text-align: right;
+              margin-right: 0.5em;
+              width: 7em;
+            }
+            .smallPrint {
+              color: #888;
+              font-size: 9pt ! important;
+              font-style: italic ! important;
+            }
+        </style>
+        <div id="wrapper" class="loginWrapper">
+
+            <a href ng-click="goToPage('/')"><img src="img/logo.png" width="240" height="102" alt="[matrix]" style="padding: 50px"/></a>
+
+            <br/>
+
+            <form id="loginForm" novalidate>
+                <!-- Login with an registered user -->
+                <div>
+                    Log in using:<br/>
+
+                    <paper-radio-group id="login-type" selected="{{login_type}}">
+                        <template repeat="{{key in login_type_label.keys}}">
+                            <paper-radio-button name="{{key}}" label="{{login_type_label[key]}}"></paper-radio-button><br>
+                        </template>
+                    </paper-radio-group>
+
+                    <div style="text-align: center">
+                        <br/>
+                        <paper-input-decorator label="{{login_type_label[login_type]}}">
+                            <input is="core-input" id="user_id" size="32" type="text" value="{{account.user_id}}">
+                        </paper-input-decorator>
+                        <paper-input-decorator label="Password">
+                            <input is="core-input" id="password" size="32" type="password" value="{{account.password}}">
+                        </paper-input-decorator>
+                        <br/>
+                        <paper-button raised role="button" on-tap="{{login}}" disabled?="{{account.user_id.isEmpty || account.password.isEmpty || account.homeServer.isEmpty}}">Login</paper-button>
+                        <br/><br/>
+                    </div>
+
+                    <div class="feedback">{{ feedback }} {{ login_error_msg }}</div>
+
+                    <div id="serverConfig">
+                        <label for="homeServer">Home Server:</label>
+                        <input id="homeServer" size="32" type="text" value="{{account.homeServer}}" placeholder="URL (e.g. https://matrix.org)"/>
+                        <div class="smallPrint">Your home server stores all your conversation and account data.</div>
+                        <label for="identityServer">Identity Server:</label>
+                        <input id="identityServer" size="32" type="text" value="{{account.identityServer}}" placeholder="URL (e.g. https://matrix.org)"/>
+                        <div class="smallPrint">
+                            Matrix provides identity servers to track which emails etc. belong to which Matrix IDs.<br/>
+                            Only https://matrix.org currently exists.</div>
+                        <br/>
+                        <a href="#/register" style="padding-right: 0em">Create account</a><br />
+                        <a href="#/reset-password">Forgotten password?</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </template>
+</polymer-element>

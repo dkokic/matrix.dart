@@ -20,10 +20,13 @@
                 <core-icon-button icon="add"></core-icon-button>
             </core-toolbar>
             <div layout horizontal center-center fit>
-                <core-animated-pages id="pages" selected="{{route}}"
+                <core-animated-pages id="pages" selected="{{selectedPath}}"
                                      valueattr="path"
                                      transitions="slide-from-right"
                                      on-tap="{{cyclePages}}">
+                    <section path="login" layout vertical center-center>
+                        <app-login param="{{route}}"></app-login>
+                    </section>
                     <template repeat="{{page in pages}}">
                         <section path="{{page.path}}" layout vertical center-center>
                             <div>{{page.name}}</div>
